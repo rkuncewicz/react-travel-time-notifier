@@ -1,2 +1,2 @@
 # react-travel-time-notifier
-Travel Time Notifier based in react
+A travel time notifier built in react.
