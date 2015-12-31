@@ -17,15 +17,11 @@ var NotificationList = React.createClass({
         var self = this, notifications = this.props.notifications;
         return (
             <div className="NotificationList">
-                <ul>
-                    {notifications.map(function(notification, index){
-                        return (
-                            <li key={index}>
-                                <Notification notification={notification}/>
-                            </li>
-                        )
-                    })}
-                </ul>
+                {notifications.map(function(notification, index){
+                    return (
+                        <Notification key={index} notification={notification}/>
+                    )
+                })}
             </div>
         );
     },

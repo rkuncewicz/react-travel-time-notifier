@@ -13,14 +13,20 @@ var NotificationDetails = React.createClass({
 
     // Render our child components, passing state via props
     render: function() {
-        var self = this;
-
         return (
             <div className="NotificationDetails">
-                <span> Origin: {this.props.origin}</span>
-                <span> Destination: {this.props.destination}</span>
-                <span>Arrive by: {this.props.arriveBy}</span>
-                <span>Leave by: {this.props.leaveBy}</span>
+                <div>
+                    <span> Origin: {this.props.origin}</span>
+                </div>
+                <div>
+                    <span> Destination: {this.props.destination}</span>
+                </div>
+                <div>
+                    <span>Arrive by: {this.props.arriveBy}</span>
+                </div>
+                <div>
+                    <span>Leave by: {this.props.leaveBy}</span>
+                </div>
             </div>
         );
     },

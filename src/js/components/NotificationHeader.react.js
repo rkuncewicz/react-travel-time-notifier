@@ -16,8 +16,8 @@ var NotificationHeader = React.createClass({
         var self = this, id = this.props.id, name = this.props.name;
 
         return (
-            <div className="NotificationHeader">
-                <span>{name}</span>
+            <div className="NotificationHeader row">
+                <h2 className="col-md-12">{name}</h2>
             </div>
         );
     }
