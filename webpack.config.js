@@ -2,7 +2,7 @@ var path = require('path'),
     webpack = require('webpack');
 
 module.exports = {
-	entry: ["./src/js/app.jsx"],
+	entry: ["./app/js/app.jsx"],
 	output: {
 		path: path.resolve(__dirname, 'dist'),
 		publicPath: "/assets/",
@@ -15,12 +15,8 @@ module.exports = {
 	module: {
 		loaders: [
 			{ test: /\.html$/, loader: "ngtemplate?relativeTo=" + __dirname + "/!html" },
-			{
-				test: /\.less$/,
-				loader: "style!css!less"
-	        },
+			{ test: /\.less$/, loader: "style!css!less" },
             { test: /bootstrap\/js\//, loader: 'imports?jQuery=jquery' },
-            { test: /\.css$/, loader: 'style-loader!css-loader' },
             { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: "file" },
             { test: /\.(woff|woff2)$/, loader:"url?prefix=font/&limit=5000" },
             { test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=application/octet-stream" },
