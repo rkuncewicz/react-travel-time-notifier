@@ -4,7 +4,9 @@
   "description": "A travel time notifier built in react.",
   "main": "index.js",
   "scripts": {
-    "watch": "node api/server.js & webpack-dev-server --progress --colors --inline --content-base demo/", 
+    "watch": "npm run watch-app & npm run watch-api",
+    "watch-app": "webpack-dev-server --progress --colors --inline --content-base demo/",
+    "watch-api": "nodemon api/server.js",
     "build": "webpack"
   },
   "author": "Robert Kuncewicz",
@@ -20,6 +22,7 @@
     "less": "^2.5.3",
     "less-loader": "^2.2.2",
     "ngtemplate-loader": "^1.3.1",
+    "nodemon": "^1.8.1",
     "path": "^0.12.7",
     "style-loader": "^0.13.0",
     "webpack": "^1.12.2",
