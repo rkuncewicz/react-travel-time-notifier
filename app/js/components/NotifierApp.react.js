@@ -3,7 +3,7 @@ var React = require('react'),
     NotifierStore = require('../stores/NotifierStore'),
     NotificationList = require('./NotificationList.react'),
     AddNotificationButton = require('./AddNotificationButton.react'),
-    NewNotification = require('./NewNotification.react');
+    NewNotification = require('./NewNotifications/NewNotification.react');
 
 class Notification {
     constructor(name, origin, destination, arrivalTime) {
@@ -55,7 +55,7 @@ var NotifierApp = React.createClass({
                 <h1>Travel Time Notifier</h1>
                 <NotificationList notifications={this.state.notifications}/>
                 <AddNotificationButton addNotification={this.toggleNewNotification} />
-                <NewNotification 
+                <NewNotification
                     show={this.state.showModal} 
                     toggleModal={this.toggleNewNotification}
                     name={this.state.name}
