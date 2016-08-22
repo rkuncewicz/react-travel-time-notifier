@@ -21,6 +21,8 @@ if (conf.using_https) {
 server.use(function(req, res, next) {
 	// set default cache-control header
 	res.set({'Cache-Control': 'max-age=0, must-revalidate'});
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
 	next();
 });
 

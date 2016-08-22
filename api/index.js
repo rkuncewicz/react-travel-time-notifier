@@ -16,11 +16,12 @@ function loadResources(resources) {
 }
 
 router.get('/', function(req, res) {
-	res.json({message: 'welcome to the api'});
+	res.json({message: 'welcome to the api!'});
 });
 
 var apiResources = [
-	//Routes
+	'Notifications',
+	'Directions'
 ];
 
 loadResources(apiResources);

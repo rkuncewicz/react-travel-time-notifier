@@ -1,7 +1,7 @@
 var Bluebird = require('bluebird');
-
 [
 //Models
+'Notification'
 ].forEach(function(modelName) {
 	var model = require('./' + modelName);
 
