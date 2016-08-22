@@ -1,11 +1,23 @@
-var NotificationActions = require('../actions/NotificationActions');
+var NotificationActions = require('../actions/NotificationActions'),
+    request = require('superagent');
 
 module.exports = {
 
   // Load mock product data from localStorage into ProductStore via Action
-    getProductData: function() {
-        var data = JSON.parse(localStorage.getItem('notifications'));
-        NotificationActions.receiveNotifications(data);
+    getNotificationData: function() {
+        //var data = JSON.parse(localStorage.getItem('notifications'));
+        request.get('http://localhost:8088/api/notifications')
+        .end(function(err, res) {
+            if (err) {
+                console.log(err);
+                return err;
+            }
+            var data = JSON.stringify(res.body.data);
+            console.log(data);
+
+           //Make api call to server to check for storage
+            NotificationActions.receiveNotifications(data);
+        })
     }
 
 };

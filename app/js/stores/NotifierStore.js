@@ -3,11 +3,15 @@ var AppDispatcher = require('../dispatcher/AppDispatcher'),
     NotifierConstants = require('../constants/NotifierConstants');
     _ = require('lodash');
 
-var _notifications = {};
+var _notifications = [];
 
 // Method to load product data from mock API
 function loadProductData(data) {
     _notifications = data;
+}
+
+function createNotification(data) {
+    //Create notification
 }
 
 // Extend ProductStore with EventEmitter to add eventing capabilities
@@ -43,6 +47,9 @@ AppDispatcher.register(function(payload) {
     switch(action.actionType) {
         case NotifierConstants.RECEIVE_DATA:
             loadProductData(action.data);
+            break;
+        case NotifierConstants.NOTIFICATION_CREATE:
+            createNotification(action.data);
             break;
         default:
             return true;

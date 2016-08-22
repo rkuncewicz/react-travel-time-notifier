@@ -7,7 +7,7 @@ require('bootstrap-webpack');
 require('../less/index.less');
 
 ProductData.init();
-NotificationApi.getProductData();
+NotificationApi.getNotificationData();
 
 // Render Controller View
 ReactDom.render(
