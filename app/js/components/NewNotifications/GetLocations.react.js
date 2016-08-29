@@ -28,7 +28,17 @@ var GetLocations = React.createClass({
     },
 
     calculateRoute: function() {
-        this.refs.map.calculateRoute(this.state.origin.getPlace(), this.state.destination.getPlace());
+        if (this.state.origin !== undefined && this.state.destination !== undefined) {
+            var originPlace = this.state.origin.getPlace();
+            var destinationPlace = this.state.destination.getPlace();
+            this.setState(
+                {
+                    originPlace: originPlace,
+                    destinationPlace: destinationPlace
+                }
+            );
+            this.refs.map.calculateRoute(originPlace, destinationPlace);
+        }
     },
 
     // Render our child components, passing state via props

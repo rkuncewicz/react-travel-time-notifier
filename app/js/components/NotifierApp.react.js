@@ -50,13 +50,9 @@ var NotifierApp = React.createClass({
 
     // Render our child components, passing state via props
     render: function() {
-        return (
-            <div className="NotifierApp container-fluid">
-                <h1>Travel Time Notifier</h1>
-                <NotificationList notifications={this.state.notifications}/>
-                <AddNotificationButton addNotification={this.toggleNewNotification} />
-                <NewNotification
-                    show={this.state.showModal} 
+        var Modal;
+        if (this.state.showModal) {
+            Modal = <NewNotification
                     toggleModal={this.toggleNewNotification}
                     name={this.state.name}
                     arrivalTime={this.state.arrivalTime}
@@ -64,6 +60,14 @@ var NotifierApp = React.createClass({
                     destination={this.state.destination}
                     updateNotification={this.linkState}
                     updateTime={this.updateTime}/>
+        }
+
+        return (
+            <div className="NotifierApp container-fluid">
+                <h1>Travel Time Notifier</h1>
+                <NotificationList notifications={this.state.notifications}/>
+                <AddNotificationButton addNotification={this.toggleNewNotification} />
+                { Modal }
             </div>
         );
     },

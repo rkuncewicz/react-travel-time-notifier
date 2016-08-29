@@ -20,7 +20,7 @@ var AddNotificationButton = React.createClass({
         return (
             <div className="AddNotificationButton">
                 <button className="btn" onClick={this.addNewNotification}>
-                    <span className="glyphicon glyphicon-plus"></span>
+                    New Notification
                 </button>
             </div>
         );

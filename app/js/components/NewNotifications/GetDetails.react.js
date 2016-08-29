@@ -9,11 +9,10 @@ var React = require('react'),
 
 function getAppState() {
     var directions = DirectionStore.getDirections();
-    console.log(directions);
-    if (directions.routes === undefined) return {};
+    if (directions === undefined) return {};
     return {
-        duration: directions.routes[0].legs[0].duration.text,
-        durationTraffic: directions.routes[0].legs[0]['duration_in_traffic'].text
+        duration: directions.duration,
+        durationTraffic: directions.durationInTraffic
     }
 }
 
@@ -32,12 +31,13 @@ var GetDetails = React.createClass({
     },
     
 
-    updateTime: function () {
-        //console.log(this.refs.dateTime);
-        var origin = "Oakville, ON";
-        var destination = "Toronto, ON";
-        console.log(MapsApi);
-        MapsApi.getDirections(origin, destination);
+    updateTime: function (time) {
+        var origin = this.props.origin.geometry.location;
+        var destination = this.props.destination.geometry.location;
+        var originLatLng = origin.lat() +","+ origin.lng();
+        var destinationLatLng = destination.lat() +","+ destination.lng();
+
+        MapsApi.getDirections(originLatLng, destinationLatLng, time);
     },
 
     // Render our child components, passing state via props
@@ -62,11 +62,7 @@ var GetDetails = React.createClass({
     },
 
     _onChange: function() {
-        var blee = getAppState();
-        console.log("blee");
-        console.log(blee);
-        this.setState(blee);
-        console.log('bloo');
+        this.setState(getAppState());
     }
 });
 
