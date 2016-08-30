@@ -53,8 +53,8 @@ var GetDetails = React.createClass({
                             mode="time" 
                             defaultText="Please select a time to arrive by.." 
                             onChange={this.updateTime}/>
-                        <div>{this.state.duration}</div>
-                        <div>{this.state.durationTraffic}</div>
+                        <div>Duration: {this.state.duration}</div>
+                        <div>Duration In Traffic: {this.state.durationTraffic}</div>
                     </div>
                 </div>
             </div>

@@ -3,7 +3,9 @@ var _ = require('lodash'),
 	conf = require('./conf'),
 	BPromise = require('bluebird'),
 	http = require('force-https'),
-	api = require('./');
+	api = require('./'),
+	request = require('superagent'),
+	mongoose = require('mongoose');
 
 BPromise.onPossiblyUnhandledRejection(function(error) {
 	throw error;
@@ -32,6 +34,16 @@ server.use('/api', [
 ]);
 
 if (require.main === module) {
+	// Connection URL
+	var url = 'mongodb://localhost:27017/travel-time-notifier';
+	mongoose.connect(url);
+
+	var db = mongoose.connection;
+	db.on('error', console.error.bind(console, 'connection error:'));
+	db.once('open', function() {
+		console.log("Connection to db established)");
+	});
+	
 	console.log('Starting server ...');
 
 	server.timeout = 2000;
