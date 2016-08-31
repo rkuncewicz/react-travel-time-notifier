@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "watch": "mongod & npm run watch-app & npm run watch-api",
-    "watch-app": "webpack-dev-server --progress --colors demo/",
+    "watch-app": "webpack-dev-server --progress --colors --content-base demo/",
     "watch-api": "nodemon api/server.js",
     "start-db": "mongod",
     "build": "webpack"
