@@ -1,9 +1,9 @@
-var React = require('react'),
-    LinkedStateMixin = require('react-addons-linked-state-mixin'),
-    NotifierStore = require('../stores/NotifierStore'),
-    NotificationList = require('./NotificationList.react'),
-    AddNotificationButton = require('./AddNotificationButton.react'),
-    NewNotification = require('./NewNotifications/NewNotification.react');
+import React from 'react';
+import LinkedStateMixin from 'react-addons-linked-state-mixin';
+import NotifierStore from '../stores/NotifierStore';
+import NotificationList from './NotificationList.react';
+import AddNotificationButton from './AddNotificationButton.react';
+import NewNotification from './NewNotifications/NewNotification.react';
 
 class Notification {
     constructor(name, origin, destination, arrivalTime) {

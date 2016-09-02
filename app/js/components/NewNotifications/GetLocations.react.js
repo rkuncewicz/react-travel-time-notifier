@@ -1,9 +1,8 @@
-var React = require('react'),
-    ReactBootstrap = require('react-bootstrap'),
-    Button = ReactBootstrap.Button,
-    Input = ReactBootstrap.Input,
-    GoogleMap = require('../GoogleMap.react'),
-    DateTimeField = require('react-bootstrap-datetimepicker');
+import React from 'react';
+import { Button, Input } from 'react-bootstrap';
+import GoogleMap from '../GoogleMap.react';
+import DateTimeField from 'react-bootstrap-datetimepicker';
+
 
 // Define main Controller View
 var GetLocations = React.createClass({

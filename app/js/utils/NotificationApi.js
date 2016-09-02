@@ -1,5 +1,5 @@
-var NotificationActions = require('../actions/NotificationActions'),
-    request = require('superagent');
+import NotificationActions from '../actions/NotificationActions';
+import request from 'superagent';
 
 module.exports = {
 

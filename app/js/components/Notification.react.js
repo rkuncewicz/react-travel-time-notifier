@@ -1,6 +1,6 @@
-var React = require('react'),
-    NotificationHeader = require('./NotificationHeader.react'),
-    NotificationDetails = require('./NotificationDetails.react');
+import React from 'react';
+import NotificationHeader from './NotificationHeader.react';
+import NotificationDetails from './NotificationDetails.react';
 
 // Define main Controller View
 var Notification = React.createClass({

@@ -1,7 +1,7 @@
-var AppDispatcher = require('../dispatcher/AppDispatcher'),
-    EventEmitter = require('events').EventEmitter,
-    NotifierConstants = require('../constants/NotifierConstants');
-    _ = require('lodash');
+import AppDispatcher from '../dispatcher/AppDispatcher';
+import { EventEmitter } from 'events';
+import NotifierConstants from '../constants/NotifierConstants';
+import _ from 'lodash';
 
 var _notifications = [];
 

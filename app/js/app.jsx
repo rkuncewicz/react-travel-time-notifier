@@ -1,10 +1,10 @@
-var ReactDom = require('react-dom'),
-    React = require('react'),
-	NotifierApp = require('./components/NotifierApp.react'),
-    ProductData = require('./ProductData')
-    NotificationApi = require('./utils/NotificationApi');
-require('bootstrap-webpack');
-require('../less/index.less');
+import ReactDom from 'react-dom';
+import React from 'react';
+import NotifierApp from './components/NotifierApp.react';
+import ProductData from './ProductData';
+import NotificationApi from './utils/NotificationApi';
+import 'bootstrap-webpack';
+import '../less/index.less';
 
 ProductData.init();
 NotificationApi.getNotificationData();

@@ -1,5 +1,5 @@
-var AppDispatcher = require('../dispatcher/AppDispatcher')
-    NotifierConstants = require('../constants/NotifierConstants');
+import AppDispatcher from '../dispatcher/AppDispatcher';
+import NotifierConstants from '../constants/NotifierConstants';
 
 module.exports = {
 

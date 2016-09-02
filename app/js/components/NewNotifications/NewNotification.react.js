@@ -1,9 +1,8 @@
-var React = require('react'),
-    ReactBootstrap = require('react-bootstrap'),
-    Modal = ReactBootstrap.Modal,
-    Button = ReactBootstrap.Button,
-    GetLocations = require('./GetLocations.react'),
-    GetDetails = require('./GetDetails.react');
+import React from 'react';
+import { Modal, Button } from 'react-bootstrap';
+import GetLocations from './GetLocations.react';
+import GetDetails from './GetDetails.react';
+import NotificationsApi from '../../utils/NotificationApi';
 
 // Define main Controller View
 var NewNotification = React.createClass({

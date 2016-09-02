@@ -1,11 +1,9 @@
-var React = require('react'),
-    ReactBootstrap = require('react-bootstrap'),
-    Button = ReactBootstrap.Button,
-    Input = ReactBootstrap.Input,
-    GoogleMap = require('../GoogleMap.react'),
-    DateTimeField = require('react-bootstrap-datetimepicker'),
-    MapsApi = require('../../utils/MapsApi'),
-    DirectionStore = require('../../stores/DirectionStore');
+import React from 'react';
+import { Button, Input } from 'react-bootstrap';
+import GoogleMap from '../GoogleMap.react';
+import DateTimeField from 'react-bootstrap-datetimepicker';
+import MapsApi from '../../utils/MapsApi';
+import DirectionStore from '../../stores/DirectionStore';
 
 function getAppState() {
     var directions = DirectionStore.getDirections();

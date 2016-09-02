@@ -1,5 +1,6 @@
-var DirectionActions = require('../actions/DirectionActions'),
-    request = require('superagent');
+import DirectionActions from '../actions/DirectionActions';
+import request from 'superagent';
+import { apiEndpoint } from './Constants';
 
 module.exports = {
 

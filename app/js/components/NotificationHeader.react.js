@@ -1,4 +1,4 @@
-var React = require('react');
+import React from 'react';
 
 // Define main Controller View
 var NotificationHeader = React.createClass({

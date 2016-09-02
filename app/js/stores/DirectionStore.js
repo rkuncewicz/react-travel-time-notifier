@@ -1,7 +1,7 @@
-var AppDispatcher = require('../dispatcher/AppDispatcher'),
-    EventEmitter = require('events').EventEmitter,
-    DirectionConstants = require('../constants/DirectionConstants');
-    _ = require('lodash');
+import AppDispatcher from '../dispatcher/AppDispatcher';
+import { EventEmitter } from 'events';
+import DirectionConstants from '../constants/DirectionConstants';
+import _ from 'lodash';
 
 var _directions = [];
 

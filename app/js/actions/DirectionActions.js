@@ -1,5 +1,5 @@
-var AppDispatcher = require('../dispatcher/AppDispatcher')
-    DirectionConstants = require('../constants/DirectionConstants');
+import AppDispatcher from '../dispatcher/AppDispatcher';
+import DirectionConstants from '../constants/DirectionConstants';
 
 module.exports = {
 
