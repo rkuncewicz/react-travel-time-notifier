@@ -22,13 +22,11 @@ var NewNotification = React.createClass({
 
     calculateRoute: function(origin, destination) {
         var self = this;
-        var originLatLng = {lat: origin.geometry.location.lat(), lng: origin.geometry.location.lng()};
-        var destLatLng = {lat: destination.geometry.location.lat(), lng: destination.geometry.location.lng()};
 
         if (origin && destination) {
             this.state.directionsService.route({
-                origin: originLatLng,
-                destination: destLatLng,
+                origin: origin,
+                destination: destination,
                 travelMode: 'DRIVING'
             }, function(resp, status) {
                 if (status === 'OK') {

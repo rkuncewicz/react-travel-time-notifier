@@ -21,17 +21,31 @@ var NewNotification = React.createClass({
     },
 
     nextStep: function() {
-        this.setState(
-            {
-                notificationStep: this.state.notificationStep + 1,
-                origin: this.refs.getLocation.state.originPlace,
-                destination: this.refs.getLocation.state.destinationPlace
+        this.setState({
+            notificationStep: this.state.notificationStep + 1,
+        });
+
+        if (this.refs.getLocation) {
+            var ref = this.refs.getLocation;
+            this.setState({
+                destination: ref.state.destinationLatLng,
+                origin: ref.state.originLatLng
             });
+        }
+    },
+
+    createNotification: function() {
+        const arrivalTime = this.refs.getDetails.state.arrivalTime;
+        NotificationsApi.createNotification("title", this.state.origin, this.state.destination, arrivalTime);
     },
 
     // Render our child components, passing state via props
     render: function() {
         var self = this;
+
+        var continueClick = self.state.notificationStep < 1 
+            ? this.nextStep
+            : this.createNotification;
         return (
             <Modal show={true} onHide={this.props.toggleModal}>
                 <Modal.Header closeButton>
@@ -44,11 +58,12 @@ var NewNotification = React.createClass({
                             origin={this.state.origin} 
                             destination={this.state.destination} /> 
                         : <GetDetails 
+                            ref="getDetails"
                             origin={this.state.origin}
                             destination={this.state.destination}/> }
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button onClick={this.nextStep}>Continue</Button>
+                    <Button onClick={ continueClick }>Continue</Button>
                 </Modal.Footer>
             </Modal> 
         );

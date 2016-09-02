@@ -21,7 +21,6 @@ var GetLocations = React.createClass({
                 (this.refs.origin.refs.input), {types: ['geocode']});
             this.state.destination = new google.maps.places.Autocomplete(
                 (this.refs.destination.refs.input), {types: ['geocode']});
-
             this.state.apiLoaded = true;
         }
     },
@@ -32,11 +31,17 @@ var GetLocations = React.createClass({
             var destinationPlace = this.state.destination.getPlace();
             this.setState(
                 {
-                    originPlace: originPlace,
-                    destinationPlace: destinationPlace
+                    originLatLng: {
+                        lat: originPlace.geometry.location.lat(), 
+                        lng: originPlace.geometry.location.lng()
+                    },
+                    destinationLatLng: {
+                        lat: destinationPlace.geometry.location.lat(), 
+                        lng: destinationPlace.geometry.location.lng()
+                    }
                 }
             );
-            this.refs.map.calculateRoute(originPlace, destinationPlace);
+            this.refs.map.calculateRoute(this.state.originLatLng, this.state.destinationLatLng);
         }
     },
 

@@ -30,10 +30,13 @@ var GetDetails = React.createClass({
     
 
     updateTime: function (time) {
-        var origin = this.props.origin.geometry.location;
-        var destination = this.props.destination.geometry.location;
-        var originLatLng = origin.lat() +","+ origin.lng();
-        var destinationLatLng = destination.lat() +","+ destination.lng();
+        var origin = this.props.origin;
+        var destination = this.props.destination;
+        var originLatLng = origin.lat +","+ origin.lng;
+        var destinationLatLng = destination.lat +","+ destination.lng;
+        this.setState({
+            arrivalTime: time
+        });
 
         MapsApi.getDirections(originLatLng, destinationLatLng, time);
     },
