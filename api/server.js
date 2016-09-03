@@ -1,9 +1,9 @@
 var _ = require('lodash'),
-	express = require('express'),
+	koa = require('koa'),
+	bodyParser = require('koa-bodyparser'),
+	cors = require('koa-cors'),
 	conf = require('./conf'),
 	BPromise = require('bluebird'),
-	http = require('force-https'),
-	api = require('./'),
 	request = require('superagent'),
 	mongoose = require('mongoose');
 
@@ -11,27 +11,21 @@ BPromise.onPossiblyUnhandledRejection(function(error) {
 	throw error;
 });
 
-var server = express();
+const server = new koa();
 
-server.set('etag', 'strong');
+server.use(cors({
+    maxAge: 0,
+    credentials: true,
+    methods: 'GET, HEAD, OPTIONS, PUT, POST, DELETE',
+    headers: 'Origin, X-Requested-With, Content-Type, Accept'
+  }));
 
-if (conf.using_https) {
-	server.enable('trust proxy');
-	server.use(https);
-}
+server.use(bodyParser()); 
 
-server.use(function(req, res, next) {
-	// set default cache-control header
-	res.set({'Cache-Control': 'max-age=0, must-revalidate'});
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-	next();
-});
+const router = require('./routeLoader');
+server.use(router.routes());
+server.use(router.allowedMethods());
 
-
-server.use('/api', [
-	api
-]);
 
 if (require.main === module) {
 	// Connection URL

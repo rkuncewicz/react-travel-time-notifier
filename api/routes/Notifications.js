@@ -1,27 +1,30 @@
 var _ = require('lodash'),
-    express = require('express'),
-    bodyParser = require('body-parser'),
     HttpError = require('http-errors'),
     Notification = require('../models/Notification');
 
-var router = module.exports = express.Router();
-
-router.use(bodyParser.json());
-
-router.route('/notifications')
-    .get(function(req, res) {
-        Notification.find(function(err, notifications){
-            res.json({
-                data: notifications
+module.exports = function notifications(router, route) {
+    //resource(router, Notification, { except: [A.Update] });
+    console.log("Ayyy");
+    console.log(route);
+    router
+        .get('/boo/', function *(next) {
+            Notification.find(function(err, notifications){
+                this.body = {
+                    data: notifications
+                };
             });
-        });
-    })
-    .post(function(req, res) {
-        var first = new Notification({title: "hello"});
-        first.save(function (err, first) {
-            if (err) return console.error(err);
-            res.json({
-                data: first
-            })
-        });
-    });
+        })
+        .post(route, function *(next) {
+            console.log("ay");
+            console.log(req);
+            var first = new Notification({title: "hello"});
+            first.save(function (err, first) {
+                if (err) return console.error(err);
+                res.json({
+                    data: first
+                })
+            });
+        })
+    console.log(router);
+    return router;
+}
