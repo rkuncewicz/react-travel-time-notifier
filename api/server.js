@@ -5,6 +5,7 @@ var _ = require('lodash'),
 	conf = require('./conf'),
 	BPromise = require('bluebird'),
 	request = require('superagent'),
+	json = require('koa-json'),
 	mongoose = require('mongoose');
 
 BPromise.onPossiblyUnhandledRejection(function(error) {
@@ -20,6 +21,7 @@ server.use(cors({
     headers: 'Origin, X-Requested-With, Content-Type, Accept'
   }));
 
+server.use(json());
 server.use(bodyParser()); 
 
 const router = require('./routeLoader');

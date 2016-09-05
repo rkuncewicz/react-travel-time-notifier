@@ -1,56 +1,42 @@
 var _ = require('lodash'),
     express = require('express'),
     bodyParser = require('body-parser'),
-    request = require('superagent'),
-    HttpError = require('http-errors');
+    request = require('superagent');
 
-var router = module.exports = express.Router();
+module.exports = function notifications(router) {
+    router
+        .get('/', function *(next) {
+            var origin = this.request.query.originLatLng;
+            var destination = this.request.query.destinationLatLng;
+            var arrivalTime = this.request.query.arrivalTime;
 
-router.use(bodyParser.json());
+            var directions = yield request
+                .get('https://maps.googleapis.com/maps/api/directions/json')
+                .query({ 
+                    origin: origin, 
+                    destination: destination, 
+                    key: key
+                });
+            var leg = directions.body.routes[0].legs[0];
+            var departureTime = arrivalTime - leg.duration.value;
 
-router.route('/directions')
-    .get(function(req, res) {
-        var topRes = res;
-        var origin = req.query.originLatLng;
-        var destination = req.query.destinationLatLng;
-        var arrivalTime = req.query.arrivalTime;
-
-        request
-            .get('https://maps.googleapis.com/maps/api/directions/json')
-            .query({ 
-                origin: origin, 
-                destination: destination, 
-                key: key
-            })
-            .end(function(err, res) {
-                if (err) {
-                    console.log(err);
-                    return err;
+            var traffic = yield request
+                .get('https://maps.googleapis.com/maps/api/directions/json')
+                .query({ 
+                    origin: origin, 
+                    destination: destination, 
+                    key: key, 
+                    departure_time: departureTime})
+            
+            var trafficLeg = traffic.body.routes[0].legs[0];
+            this.body = {
+                data: {
+                    duration: leg.duration ? leg.duration.text : "",
+                    durationInTraffic: 
+                        leg['duration_in_traffic'] 
+                            ? leg['duration_in_traffic'].text 
+                            : ""
                 }
-                var directions = JSON.parse(res.text);
-                var leg = directions.routes[0].legs[0];
-                var departureTime = arrivalTime - leg.duration.value;
-
-                return request
-                    .get('https://maps.googleapis.com/maps/api/directions/json')
-                    .query({ 
-                        origin: origin, 
-                        destination: destination, 
-                        key: key, 
-                        departure_time: departureTime})
-                    .end(function(err, res) {
-                        var directions = JSON.parse(res.text);
-                        var leg = directions.routes[0].legs[0];
-                        topRes.json({
-                            data: {
-                                duration: leg.duration ? leg.duration.text : "",
-                                durationInTraffic: 
-                                    leg['duration_in_traffic'] 
-                                        ? leg['duration_in_traffic'].text 
-                                        : ""
-                            }
-                        }); 
-                    });
-            })
-    })
-    .post();
+            };
+        });
+}
