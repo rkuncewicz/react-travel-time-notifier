@@ -18,6 +18,7 @@ module.exports = function notifications(router) {
                     key: key
                 });
             var leg = directions.body.routes[0].legs[0];
+            //Double check this returns proper value
             var departureTime = arrivalTime - leg.duration.value;
 
             var traffic = yield request
@@ -26,15 +27,16 @@ module.exports = function notifications(router) {
                     origin: origin, 
                     destination: destination, 
                     key: key, 
-                    departure_time: departureTime})
+                    departure_time: departureTime
+                })
             
             var trafficLeg = traffic.body.routes[0].legs[0];
             this.body = {
                 data: {
-                    duration: leg.duration ? leg.duration.text : "",
+                    duration: trafficLeg.duration ? trafficLeg.duration.text : "",
                     durationInTraffic: 
-                        leg['duration_in_traffic'] 
-                            ? leg['duration_in_traffic'].text 
+                        trafficLeg['duration_in_traffic'] 
+                            ? trafficLeg['duration_in_traffic'].text 
                             : ""
                 }
             };
